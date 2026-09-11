@@ -1,0 +1,9 @@
+"use client";
+import { FormEvent, useState } from 'react';
+import { createClient } from '@/lib/supabase/client';
+import { Icon } from '@/components/ui';
+export default function Page() {
+  const [email, setEmail] = useState(''); const [message, setMessage] = useState(''); const [loading, setLoading] = useState(false);
+  async function submit(e: FormEvent) { e.preventDefault(); setLoading(true); setMessage(''); const supabase = createClient(); const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: `${window.location.origin}/portal` } }); setLoading(false); setMessage(error ? error.message : 'Check your inbox for a secure sign-in link.'); }
+  return <main className="grid min-h-[calc(100vh-76px)] place-items-center bg-mist px-5 py-16"><div className="w-full max-w-md rounded-4xl border border-line bg-white p-7 shadow-soft md:p-9"><p className="eyebrow text-teal">Patient portal</p><h1 className="mt-3 text-3xl font-extrabold">Sign in to your care.</h1><p className="mt-3 text-sm leading-6 text-slate-500">Use a passwordless Supabase magic link. No password to remember.</p><form onSubmit={submit} className="mt-7 grid gap-4"><label className="grid gap-2 text-sm font-bold text-navy">Email address<input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className="min-h-12 rounded-xl border border-line px-4 font-normal" /></label><button disabled={loading} className="min-h-12 rounded-full bg-navy text-sm font-bold text-white hover:bg-blue disabled:opacity-60">{loading ? 'Sending…' : 'Send secure link'}</button></form>{message && <p role="status" className="mt-5 rounded-xl bg-mist p-4 text-sm leading-6 text-slate-600"><Icon name="check" size={16} /> {message}</p>}<p className="mt-6 text-center text-xs leading-5 text-slate-400">By continuing, you agree to the portal terms and privacy policy.</p></div></main>;
+}

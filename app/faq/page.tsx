@@ -1,0 +1,1 @@
+import {StandardPage,FaqList} from '@/components/sections';export default function Page(){return <><StandardPage eyebrow="Questions, answered" title="A clearer way to plan your visit." intro="Find quick answers about appointments, queue tracking and the HealthFlow experience."><section className="container-shell max-w-3xl py-16 md:py-24"><FaqList/></section></StandardPage></>}
