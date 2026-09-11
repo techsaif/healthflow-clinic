@@ -1,0 +1,2 @@
+import type { Config } from 'tailwindcss';
+export default { content: ['./app/**/*.{ts,tsx}','./components/**/*.{ts,tsx}','./lib/**/*.{ts,tsx}'], theme: { extend: { colors: { ink:'#0b1f33', navy:'#0d3658', blue:'#0f5e8c', teal:'#2aa89b', mist:'#f5f9fc', line:'#dce8ef' }, boxShadow: { soft:'0 18px 55px rgba(13,54,88,.10)', card:'0 8px 24px rgba(13,54,88,.06)' }, borderRadius: {'4xl':'2rem'} } }, plugins: [] } satisfies Config;
